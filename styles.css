@@ -1,10 +1,11 @@
-/* RESET AND BASE STYLES */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/*
+ * WAD621S Styling Lab 05
+ * CSS Styles
+ */
 
+/* --------------------
+ * CSS Variables
+ * -------------------- */
 :root {
   --primary: #4361ee;
   --secondary: #3a0ca3;
@@ -24,1044 +25,340 @@
   --border-color: #e9ecef;
 }
 
+/* Dark mode theme variables */
+body.dark-mode {
+  --body-bg: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #f8f9fa;
+  --dark: #f8f9fa; /* Invert dark and light */
+  --light: #212529;
+  --gray: #b0b0b0;
+  --light-gray: #333333;
+  --card-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  --border-color: #444444;
+}
+
+/* --------------------
+ * Global Styles
+ * -------------------- */
 body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.6;
-  color: var(--text-color);
+  font-family: Arial, sans-serif;
   background-color: var(--body-bg);
-  padding: 20px;
-  transition: var(--transition);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  transition: background-color var(--transition), color var(--transition);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+h1, h2, h3 {
+  color: var(--dark);
 }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-h1 {
-  color: var(--primary);
-  margin-bottom: 10px;
-  font-size: 2.5rem;
-}
-
-h2 {
-  color: var(--secondary);
-  margin: 30px 0 15px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--light-gray);
-}
-
-h3 {
-  color: var(--info);
-  margin: 20px 0 10px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-.section {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: var(--card-shadow);
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: var(--dark);
 }
 
 .component-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  gap: 2rem;
 }
 
-/* ========== IMPLEMENT THE STYLES BELOW ========== */
-
-/* Dark theme specific overrides */
-.dark-theme .form-input,
-.dark-theme .form-select,
-.dark-theme .form-textarea {
-  /* TODO: Add dark theme form control styles */
-  /* HINT: Use background-color, color, and border-color */
+.component-section {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    transition: background-color var(--transition);
 }
 
-.dark-theme .table th {
-  /* TODO: Add dark theme table header styles */
-  /* HINT: Use background-color */
-}
-
-.dark-theme .code-editor {
-  /* TODO: Add dark theme code editor styles */
-  /* HINT: Use background-color */
-}
-
-/* Card Styles */
+/* --------------------
+ * 1. Cards
+ * -------------------- */
+/* Updated Cards */
 .card {
-  /* TODO: Add card styles */
-  /* HINT: Use background-color, border-radius, box-shadow, transition */
+  background-color: var(--card-bg);
+  border-radius: 12px; /* Increased border radius */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Stronger initial shadow */
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease-in-out; /* Custom transition for a smoother effect */
+  border: 1px solid var(--border-color); /* Added a subtle border */
 }
 
 .card:hover {
-  /* TODO: Add hover styles for card */
-  /* HINT: Use transform and box-shadow */
+  transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); /* Darker shadow on hover */
 }
 
 .card-img {
-  /* TODO: Add card image styles */
-  /* HINT: Set width, height, and object-fit */
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid var(--border-color); /* Separator between image and content */
 }
 
 .card-content {
-  /* TODO: Add card content styles */
-  /* HINT: Add padding */
+  padding: 1.5rem; /* Increased padding */
+  text-align: center; /* Centered content for a clean look */
 }
 
 .card-title {
-  /* TODO: Add card title styles */
-  /* HINT: Set font-size, margin, and color */
-}
-
-.card-text {
-  /* TODO: Add card text styles */
-  /* HINT: Set color and margin */
-}
-
-/* Button Styles */
-.btn {
-  /* TODO: Add button styles */
-  /* HINT: Use display, padding, background-color, color, border, border-radius, cursor, transition */
-}
-
-.btn:hover {
-  /* TODO: Add button hover styles */
-  /* HINT: Change background-color */
-}
-
-.btn-success {
-  /* TODO: Add success button styles */
-  /* HINT: Change background-color */
-}
-
-.btn-warning {
-  /* TODO: Add warning button styles */
-  /* HINT: Change background-color */
-}
-
-.btn-info {
-  /* TODO: Add info button styles */
-  /* HINT: Change background-color */
-}
-
-.btn-outline {
-  /* TODO: Add outline button styles */
-  /* HINT: Transparent background with border and specific text color */
-}
-
-.btn-outline:hover {
-  /* TODO: Add hover styles for outline button */
-  /* HINT: Change background-color and text color */
-}
-
-.btn-group {
-  /* TODO: Add button group styles */
-  /* HINT: Use display and gap */
-}
-
-/* Chip Styles */
-.chips-container {
-  /* TODO: Add chips container styles */
-  /* HINT: Use display, flex-wrap, gap, and margin */
-}
-
-.chip {
-  /* TODO: Add chip styles */
-  /* HINT: Use display, align-items, padding, background-color, border-radius, font-size, color, and cursor */
-}
-
-.chip.active {
-  /* TODO: Add active chip styles */
-  /* HINT: Change background-color and color */
-}
-
-.chip i {
-  /* TODO: Add icon styles within chips */
-  /* HINT: Use margin-right */
-}
-
-.chip .close {
-  /* TODO: Add close button styles within chips */
-  /* HINT: Use margin-left, cursor, and font-weight */
-}
-
-/* Slider Styles */
-.slider-container {
-  /* TODO: Add slider container styles */
-  /* HINT: Use margin */
-}
-
-.slider {
-  /* TODO: Add slider styles */
-  /* HINT: Use appearance, width, height, border-radius, background, and outline */
-}
-
-.slider::-webkit-slider-thumb {
-  /* TODO: Add slider thumb styles */
-  /* HINT: Use appearance, width, height, border-radius, background, cursor, and transition */
-}
-
-.slider::-webkit-slider-thumb:hover {
-  /* TODO: Add hover styles for slider thumb */
-  /* HINT: Use background and transform */
-}
-
-.slider-value {
-  /* TODO: Add slider value styles */
-  /* HINT: Use text-align, font-weight, and color */
-}
-
-/* Switch Styles */
-.switch-container {
-  /* TODO: Add switch container styles */
-  /* HINT: Use display, align-items, and margin */
-}
-
-.switch {
-  /* TODO: Add switch styles */
-  /* HINT: Use position, display, width, height, and margin-right */
-}
-
-.switch input {
-  /* TODO: Add switch input styles */
-  /* HINT: Use opacity, width, and height */
-}
-
-.slider-round {
-  /* TODO: Add slider round styles */
-  /* HINT: Use position, cursor, top/left/right/bottom properties, background-color, transition, and border-radius */
-}
-
-.slider-round:before {
-  /* TODO: Add slider round before element styles */
-  /* HINT: Use position, content, height, width, left, bottom, background-color, transition, and border-radius */
-}
-
-input:checked + .slider-round {
-  /* TODO: Add checked slider round styles */
-  /* HINT: Change background-color */
-}
-
-input:checked + .slider-round:before {
-  /* TODO: Add checked slider round before element styles */
-  /* HINT: Use transform with translateX */
-}
-
-/* List Styles */
-.list {
-  /* TODO: Add list styles */
-  /* HINT: Use list-style-type, background-color, border-radius, overflow, and box-shadow */
-}
-
-.list-item {
-  /* TODO: Add list item styles */
-  /* HINT: Use padding, border-bottom, display, align-items, cursor, and transition */
-}
-
-.list-item:last-child {
-  /* TODO: Add styles for last list item */
-  /* HINT: Remove border-bottom */
-}
-
-.list-item:hover {
-  /* TODO: Add hover styles for list items */
-  /* HINT: Change background-color */
-}
-
-.list-item i {
-  /* TODO: Add icon styles in list items */
-  /* HINT: Use margin-right and color */
-}
-
-.list-item .avatar {
-  /* TODO: Add avatar styles in list items */
-  /* HINT: Use width, height, border-radius, margin-right, and object-fit */
-}
-
-/* Form Styles */
-.form-group {
-  /* TODO: Add form group styles */
-  /* HINT: Add margin-bottom */
-}
-
-.form-label {
-  /* TODO: Add form label styles */
-  /* HINT: Use display, margin, and font-weight */
-}
-
-.form-input {
-  /* TODO: Add form input styles */
-  /* HINT: Use width, padding, border, border-radius, font-size, transition */
-}
-
-.form-input:focus {
-  /* TODO: Add focus styles for form inputs */
-  /* HINT: Use outline, border-color, and box-shadow */
-}
-
-.form-select {
-  /* TODO: Add form select styles */
-  /* HINT: Similar to form-input, with additional background-color */
-}
-
-.form-textarea {
-  /* TODO: Add textarea styles */
-  /* HINT: Similar to form-input, with additional min-height and resize properties */
-}
-
-/* Table Styles */
-.table-container {
-  /* TODO: Add table container styles */
-  /* HINT: Use overflow-x and margin */
-}
-
-.table {
-  /* TODO: Add table styles */
-  /* HINT: Use width, border-collapse, border-spacing */
-}
-
-.table th,
-.table td {
-  /* TODO: Add table cell styles */
-  /* HINT: Use padding, text-align, border-bottom */
-}
-
-.table th {
-  /* TODO: Add table header styles */
-  /* HINT: Use background-color, font-weight, cursor */
-}
-
-.table th:hover {
-  /* TODO: Add hover styles for table headers */
-  /* HINT: Change background-color */
-}
-
-.table tr {
-  /* TODO: Add table row styles */
-  /* HINT: Use transition */
-}
-
-.table tr:hover {
-  /* TODO: Add hover styles for table rows */
-  /* HINT: Change background-color with rgba for transparency */
-}
-
-/* Badge Styles */
-.badge {
-  /* TODO: Add badge styles */
-  /* HINT: Use display, padding, border-radius, font-size, font-weight, and margin-left */
-}
-
-.badge-primary {
-  /* TODO: Add primary badge styles */
-  /* HINT: Use background-color and color */
-}
-
-.badge-success {
-  /* TODO: Add success badge styles */
-  /* HINT: Use background-color and color */
-}
-
-.badge-warning {
-  /* TODO: Add warning badge styles */
-  /* HINT: Use background-color and color */
-}
-
-/* Alert Styles */
-.alert {
-  /* TODO: Add alert styles */
-  /* HINT: Use padding, border-radius, margin-bottom, display, align-items, and justify-content */
-}
-
-.alert i {
-  /* TODO: Add icon styles in alerts */
-  /* HINT: Use margin-right and font-size */
-}
-
-.alert-content {
-  /* TODO: Add alert content styles */
-  /* HINT: Use display and align-items */
-}
-
-.alert-close {
-  /* TODO: Add alert close button styles */
-  /* HINT: Use cursor and font-weight */
-}
-
-.alert-success {
-  /* TODO: Add success alert styles */
-  /* HINT: Use background-color, color, and border-left */
-}
-
-.alert-warning {
-  /* TODO: Add warning alert styles */
-  /* HINT: Use background-color, color, and border-left */
-}
-
-.alert-info {
-  /* TODO: Add info alert styles */
-  /* HINT: Use background-color, color, and border-left */
-}
-
-/* Navigation Styles */
-.nav {
-  /* TODO: Add navigation styles */
-  /* HINT: Use display, background-color, border-radius, overflow, and margin-bottom */
-}
-
-.nav-item {
-  /* TODO: Add navigation item styles */
-  /* HINT: Use padding, color, text-decoration, transition */
-}
-
-.nav-item:hover {
-  /* TODO: Add hover styles for nav items */
-  /* HINT: Change background-color */
-}
-
-.nav-item.active {
-  /* TODO: Add styles for active nav item */
-  /* HINT: Use background-color and font-weight */
-}
-
-/* Progress Bar Styles */
-.progress {
-  /* TODO: Add progress bar container styles */
-  /* HINT: Use height, background-color, border-radius, margin, and overflow */
-}
-
-.progress-bar {
-  /* TODO: Add progress bar styles */
-  /* HINT: Use height, border-radius, and transition */
-}
-
-.progress-primary {
-  /* TODO: Add primary progress bar styles */
-  /* HINT: Use background-color */
-}
-
-.progress-success {
-  /* TODO: Add success progress bar styles */
-  /* HINT: Use background-color */
-}
-
-/* Pagination Styles */
-.pagination {
-  /* TODO: Add pagination styles */
-  /* HINT: Use display, list-style, padding, and margin */
-}
-
-.page-item {
-  /* TODO: Add page item styles */
-  /* HINT: Use margin-right */
-}
-
-.page-link {
-  /* TODO: Add page link styles */
-  /* HINT: Use display, padding, border, border-radius, color, text-decoration, transition, and cursor */
-}
-
-.page-link:hover {
-  /* TODO: Add hover styles for page links */
-  /* HINT: Change background-color */
-}
-
-.page-item.active .page-link {
-  /* TODO: Add styles for active page link */
-  /* HINT: Use background-color, color, and border-color */
-}
-
-/* Breadcrumb Styles */
-.breadcrumb {
-  /* TODO: Add breadcrumb styles */
-  /* HINT: Use display, list-style, padding, and margin */
-}
-
-.breadcrumb-item {
-  /* TODO: Add breadcrumb item styles */
-  /* HINT: Use display and align-items */
-}
-
-.breadcrumb-item:not(:last-child)::after {
-  /* TODO: Add separator for breadcrumb items */
-  /* HINT: Use content, margin, and color */
-}
-
-.breadcrumb-link {
-  /* TODO: Add breadcrumb link styles */
-  /* HINT: Use color, text-decoration, and cursor */
-}
-
-.breadcrumb-link:hover {
-  /* TODO: Add hover styles for breadcrumb links */
-  /* HINT: Add text-decoration */
-}
-
-.breadcrumb-item.active {
-  /* TODO: Add styles for active breadcrumb item */
-  /* HINT: Use color */
-}
-
-/* Modal Styles */
-.modal {
-  /* TODO: Add modal styles */
-  /* HINT: Use display, position, top/left, width, height, background-color, z-index, justify-content, and align-items */
-}
-
-.modal-content {
-  /* TODO: Add modal content styles */
-  /* HINT: Use background-color, border-radius, width, max-width, padding, and box-shadow */
-}
-
-.modal-header {
-  /* TODO: Add modal header styles */
-  /* HINT: Use display, justify-content, align-items, and margin-bottom */
-}
-
-.modal-title {
-  /* TODO: Add modal title styles */
-  /* HINT: Use font-size and color */
-}
-
-.modal-close {
-  /* TODO: Add modal close button styles */
-  /* HINT: Use background, border, font-size, cursor, and color */
-}
-
-/* Tooltip Styles */
-.tooltip {
-  /* TODO: Add tooltip styles */
-  /* HINT: Use position, display, border-bottom, and cursor */
-}
-
-.tooltip .tooltip-text {
-  /* TODO: Add tooltip text styles */
-  /* HINT: Use visibility, width, background-color, color, text-align, border-radius, padding, position, z-index, bottom, left, margin-left, opacity, and transition */
-}
-
-.tooltip .tooltip-text::after {
-  /* TODO: Add tooltip arrow styles */
-  /* HINT: Use content, position, top, left, margin-left, border-width, border-style, and border-color */
-}
-
-.tooltip:hover .tooltip-text {
-  /* TODO: Add hover styles for tooltip */
-  /* HINT: Change visibility and opacity */
-}
-
-/* Accordion Styles */
-.accordion {
-  /* TODO: Add accordion styles */
-  /* HINT: Use margin */
-}
-
-.accordion-item {
-  /* TODO: Add accordion item styles */
-  /* HINT: Use border, border-radius, margin-bottom, and overflow */
-}
-
-.accordion-header {
-  /* TODO: Add accordion header styles */
-  /* HINT: Use padding, background-color, cursor, display, justify-content, align-items, and font-weight */
-}
-
-.accordion-content {
-  /* TODO: Add accordion content styles */
-  /* HINT: Use padding, max-height, overflow, and transition */
-}
-
-.accordion-content.active {
-  /* TODO: Add styles for active accordion content */
-  /* HINT: Use padding and max-height */
-}
-
-/* Tabs Styles */
-.tabs {
-  /* TODO: Add tabs container styles */
-  /* HINT: Use margin */
-}
-
-.tab-header {
-  /* TODO: Add tab header styles */
-  /* HINT: Use display and border-bottom */
-}
-
-.tab-link {
-  /* TODO: Add tab link styles */
-  /* HINT: Use padding, cursor, transition, and border-bottom */
-}
-
-.tab-link:hover {
-  /* TODO: Add hover styles for tab links */
-  /* HINT: Change color */
-}
-
-.tab-link.active {
-  /* TODO: Add styles for active tab link */
-  /* HINT: Use color and border-bottom */
-}
-
-.tab-content {
-  /* TODO: Add tab content styles */
-  /* HINT: Use padding */
-}
-
-.tab-pane {
-  /* TODO: Add tab pane styles */
-  /* HINT: Use display property */
-}
-
-.tab-pane.active {
-  /* TODO: Add styles for active tab pane */
-  /* HINT: Change display */
-}
-
-/* Dropdown Styles */
-.dropdown {
-  /* TODO: Add dropdown styles */
-  /* HINT: Use position and display */
-}
-
-.dropdown-toggle {
-  /* TODO: Add dropdown toggle styles */
-  /* HINT: Use padding, background-color, color, border, border-radius, cursor, display, and align-items */
-}
-
-.dropdown-toggle::after {
-  /* TODO: Add dropdown toggle indicator */
-  /* HINT: Use content, margin-left, and font-size */
-}
-
-.dropdown-menu {
-  /* TODO: Add dropdown menu styles */
-  /* HINT: Use position, top, left, background-color, border-radius, box-shadow, min-width, z-index, and display */
-}
-
-.dropdown-menu.show {
-  /* TODO: Add styles for visible dropdown menu */
-  /* HINT: Change display */
-}
-
-.dropdown-item {
-  /* TODO: Add dropdown item styles */
-  /* HINT: Use padding, display, color, text-decoration, and transition */
-}
-
-.dropdown-item:hover {
-  /* TODO: Add hover styles for dropdown items */
-  /* HINT: Change background-color */
-}
-
-/* Toast Styles */
-.toast-container {
-  /* TODO: Add toast container styles */
-  /* HINT: Use position, bottom, right, and z-index */
-}
-
-.toast {
-  /* TODO: Add toast styles */
-  /* HINT: Use padding, background-color, border-radius, box-shadow, margin-bottom, display, align-items, justify-content, min-width, transform, opacity, and transition */
-}
-
-.toast.show {
-  /* TODO: Add styles for visible toast */
-  /* HINT: Use transform and opacity */
-}
-
-.toast-success {
-  /* TODO: Add success toast styles */
-  /* HINT: Use border-left */
-}
-
-.toast-warning {
-  /* TODO: Add warning toast styles */
-  /* HINT: Use border-left */
-}
-
-.toast-close {
-  /* TODO: Add toast close button styles */
-  /* HINT: Use cursor and font-weight */
-}
-
-/* Code Editor Styles */
-.code-editor {
-  /* TODO: Add code editor styles */
-  /* HINT: Use background-color, border-radius, padding, margin, font-family, color, and overflow-x */
-}
-
-.code-comment {
-  /* TODO: Add code comment styles */
-  /* HINT: Use color */
-}
-
-.code-selector {
-  /* TODO: Add code selector styles */
-  /* HINT: Use color */
-}
-
-.code-property {
-  /* TODO: Add code property styles */
-  /* HINT: Use color */
-}
-
-.code-value {
-  /* TODO: Add code value styles */
-  /* HINT: Use color */
-}
-
-/* Theme Selector */
-.theme-selector {
-  /* TODO: Add theme selector styles */
-  /* HINT: Use position, top, right, and z-index */
-}
-
-.theme-btn {
-  /* TODO: Add theme button styles */
-  /* HINT: Use padding, background-color, color, border, border-radius, and cursor */
-}
-
-/* Animation Classes */
-.fade-in {
-  /* TODO: Add fade-in animation */
-  /* HINT: Use animation property */
-}
-
-.slide-in {
-  /* TODO: Add slide-in animation */
-  /* HINT: Use animation property */
-}
-
-.bounce {
-  /* TODO: Add bounce animation */
-  /* HINT: Use animation property */
-}
-
-@keyframes fadeIn {
-  /* TODO: Add fadeIn keyframes */
-  /* HINT: Define from and to states with opacity */
-}
-
-@keyframes slideIn {
-  /* TODO: Add slideIn keyframes */
-  /* HINT: Define from and to states with transform and opacity */
-}
-
-@keyframes bounce {
-  /* TODO: Add bounce keyframes */
-  /* HINT: Define keyframe percentages with transform */
-}
-
-/* Panel Header with close button */
-.panel-header {
-  /* TODO: Add panel header styles */
-  /* HINT: Use display, justify-content, align-items, margin-bottom, border-bottom, and padding-bottom */
-}
-
-.panel-close {
-  /* TODO: Add panel close button styles */
-  /* HINT: Use background, border, font-size, cursor, color, and transition */
-}
-
-.panel-close:hover {
-  /* TODO: Add hover styles for panel close button */
-  /* HINT: Use color and transform */
-}
-
-/* Pull tab that appears on the left edge when panel is closed */
-.panel-pull-tab {
-  /* TODO: Add panel pull tab styles */
-  /* HINT: Use position, top, left, transform, background-color, color, padding, border-radius, cursor, box-shadow, z-index, display, align-items, justify-content, and transition */
-}
-
-.panel-pull-tab:hover {
-  /* TODO: Add hover styles for panel pull tab */
-  /* HINT: Use padding-right and background-color */
-}
-
-/* Customization Panel */
-.customization-panel {
-  /* TODO: Add customization panel styles */
-  /* HINT: Use position, top, left, width, height, background-color, box-shadow, padding, overflow-y, transform, transition, and z-index */
-}
-
-.customization-panel.open {
-  /* TODO: Add styles for open customization panel */
-  /* HINT: Use transform */
-}
-
-.panel-toggle {
-  /* TODO: Add panel toggle styles */
-  /* HINT: Use position, top, right, z-index, padding, background-color, color, border, border-radius, and cursor */
-}
-
-.color-option {
-  /* TODO: Add color option styles */
-  /* HINT: Use width, height, border-radius, display, margin, cursor, and border */
-}
-
-.color-option.active {
-  /* TODO: Add active color option styles */
-  /* HINT: Use border-color */
-}
-
-/* Interactive Widgets */
-.interactive-widgets {
-  /* TODO: Add interactive widgets container styles */
-  /* HINT: Use display, grid-template-columns, gap, and margin-bottom */
-}
-
-.widget {
-  /* TODO: Add widget styles */
-  /* HINT: Use background-color, border-radius, box-shadow, padding, display, and transition */
-}
-
-.widget:hover {
-  /* TODO: Add hover styles for widgets */
-  /* HINT: Use transform and box-shadow */
-}
-
-.widget i {
-  /* TODO: Add widget icon styles */
-  /* HINT: Use font-size, color, and margin-right */
-}
-
-.widget-content {
-  /* TODO: Add widget content styles */
-  /* HINT: Use flex property */
-}
-
-.widget h3 {
-  /* TODO: Add widget heading styles */
-  /* HINT: Use margin-top, margin-bottom, color, and font-size */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  /* TODO: Add responsive styles for mobile */
-  /* HINT: Adjust component-grid, btn-group, nav, and tab-header */
-
-  .component-grid {
-    /* Change grid to single column */
-  }
-
-  .btn-group {
-    /* Stack buttons vertically */
-  }
-
-  .nav {
-    /* Make nav items stack vertically */
-  }
-
-  .tab-header {
-    /* Make tab links stack vertically */
-  }
-}
-
-/* ========== PRESERVED WIDGET STYLES ========== */
-
-/* Clock Widget */
-#clock {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin: 10px 0;
-}
-
-.clock-toggle {
-  display: flex;
-  margin-top: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  width: fit-content;
-}
-
-.clock-toggle-btn {
-  padding: 5px 10px;
-  background-color: var(--light-gray);
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 0.8rem;
-}
-
-.clock-toggle-btn.active {
-  background-color: var(--primary);
-  color: var(--white);
-}
-
-/* Analog Clock */
-#analog-clock-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-#analog-clock {
-  width: 150px;
-  height: 150px;
-}
-
-#date {
-  color: var(--gray);
-}
-
-/* Calendar Widget */
-#current-month {
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-
-.mini-calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-
-.calendar-day {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-size: 0.9rem;
-}
-
-.calendar-day.current {
-  background-color: var(--primary);
-  color: white;
-  font-weight: bold;
-}
-
-.calendar-day.day-name {
-  font-weight: bold;
+  font-size: 1.6rem; /* Slightly larger title */
+  margin-top: 0;
+  margin-bottom: 0.75rem; /* Better spacing below the title */
   color: var(--dark);
 }
 
-/* Mood Widget */
-.mood-tracker {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 0;
-}
-
-.mood-emoji {
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.mood-emoji:hover {
-  transform: scale(1.2);
-}
-
-#mood-response {
-  text-align: center;
-  font-size: 0.9rem;
+.card-content p {
   color: var(--gray);
-  height: 20px;
+  line-height: 1.6; /* Improved readability */
 }
 
-/* Dark theme overrides for widgets */
-.dark-theme .widget {
-  background-color: var(--card-bg);
+.card-content a {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
 }
 
-.dark-theme #date,
-.dark-theme #mood-response {
-  color: var(--text-color);
-  opacity: 0.8;
+/* --------------------
+ * 2. Buttons
+ * -------------------- */
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-/* Footer Styles */
-.footer {
-  margin-top: 50px;
-  padding: 20px 0;
-  background-color: var(--card-bg);
-  border-top: 1px solid var(--border-color);
-  text-align: center;
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--transition);
+    font-size: 1rem;
 }
 
-.footer-container {
-  padding: 0 20px;
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background-color: var(--secondary);
 }
 
-.footer p {
-  color: var(--text-color);
-  font-size: 0.9rem;
+.btn-success {
+    background-color: var(--success);
+    color: var(--dark);
+}
+.btn-warning {
+    background-color: var(--warning);
+    color: var(--white);
+}
+.btn-info {
+    background-color: var(--info);
+    color: var(--white);
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  color: var(--dark);
+  border-color: var(--dark);
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --------------------
+ * 3. Chips
+ * -------------------- */
+.chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background-color: var(--light-gray);
+    color: var(--gray);
+    font-size: 0.875rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.chip:hover {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+.chip.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.chip-close {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --------------------
+ * 4. Navigation
+ * -------------------- */
+/* Updated Navigation Bar */
+.nav-bar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary)); /* Subtle gradient */
+  padding: 1rem 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  border-radius: 8px; /* Added border radius for a softer look */
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
   margin: 0;
+  padding: 0;
+  gap: 2rem; /* Increased spacing */
+  align-items: center;
 }
 
-/* Dark theme override for footer */
-.dark-theme .footer {
-  background-color: var(--card-bg);
-  border-color: var(--border-color);
-}
-
-/* Challenge Instructions Section Styling */
-.instruction-section {
-  border-left: 4px solid var(--primary);
-  background-color: rgba(67, 97, 238, 0.05);
+.nav-link {
+  text-decoration: none;
+  color: var(--white); /* Changed text color for better contrast on the dark background */
+  font-weight: bold;
+  padding: 0.5rem 0.75rem; /* Added padding for a larger click area */
   position: relative;
+  transition: color var(--transition);
 }
 
-.instruction-section h2 {
-  color: var(--primary);
-  font-size: 1.6rem;
-  border-bottom: 2px solid var(--primary);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust position */
+  left: 50%; /* Start from the center */
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px; /* Thicker underline */
+  background-color: var(--success); /* Use a vibrant color for the highlight */
+  border-radius: 2px;
+  transition: width 0.3s ease-in-out;
 }
 
-.instruction-section ol {
-  padding-left: 1.5rem;
-  margin: 1.5rem 0;
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--success); /* Change text color on hover/focus */
 }
 
-.instruction-section li {
-  margin-bottom: 12px;
-  position: relative;
-  padding-left: 10px;
+.nav-link.active::after {
+  width: 100%; /* Full width underline for the active link */
 }
 
-.instruction-section li::marker {
-  color: var(--primary);
-  font-weight: 600;
+.nav-link:not(.active):hover::after {
+  width: 70%; /* A partial underline on hover for non-active links */
 }
 
-.instruction-section strong {
-  color: var(--primary);
-  font-weight: 600;
+/* --------------------
+ * 5. Forms
+ * -------------------- */
+form {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
 }
 
-.instruction-section p:last-child {
-  background-color: rgba(67, 97, 238, 0.1);
-  padding: 12px 15px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  border-left: 3px solid var(--primary);
+.form-group {
+    margin-bottom: 1.5rem;
 }
 
-/* Dark theme overrides */
-.dark-theme .instruction-section {
-  background-color: rgba(123, 104, 238, 0.1);
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
 }
 
-.dark-theme .instruction-section p:last-child {
-  background-color: rgba(76, 201, 240, 0.1);
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--light);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.25);
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+/* --------------------
+ * 6. Responsive Design
+ * -------------------- */
+@media (min-width: 768px) {
+    .component-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .component-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .component-section:nth-of-type(1) { grid-column: span 1; }
+    .component-section:nth-of-type(2) { grid-column: span 1; }
+    .component-section:nth-of-type(3) { grid-column: span 1; }
+    .component-section:nth-of-type(4) { grid-column: span 2; }
+    .component-section:nth-of-type(5) { grid-column: span 2; }
+}
+
+/* Larger desktop screens */
+@media (min-width: 1200px) {
+    .component-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .component-section:nth-of-type(4) { grid-column: span 3; }
+    .component-section:nth-of-type(5) { grid-column: span 3; }
 }
